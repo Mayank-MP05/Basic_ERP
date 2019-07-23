@@ -4,6 +4,7 @@ include("auth.php"); //include auth.php file on all secure pages ?>
 <html>
 <head>
 <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="css/completeProfile.css">
 <meta charset="utf-8">
 <title>Welcome to PCCOE ERP Lite</title>
 <link rel="stylesheet" href="css/style.css" />
@@ -16,7 +17,11 @@ include("auth.php"); //include auth.php file on all secure pages ?>
     $selectQ = "SELECT * FROM `users` where username="."'".$active_user."'";
     $result = mysqli_query($con,$selectQ) or die(mysqli_error($con));
     while($row = mysqli_fetch_assoc($result)) {
-      //echo "id: " . $row["id"]. " - Name: " . $row["username"]. " " . $row["email"]. "<br>";
+      if($row["profile_pic"] != ""){
+        $src = $row["profile_pic"];
+      }else{
+        $src = "uploads/default.png";
+      }
 ?>
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -42,8 +47,10 @@ include("auth.php"); //include auth.php file on all secure pages ?>
        
 <div class="container" style="" class="align-items-center align-self-center">
     <div class="row">
-        <img src="" alt="">
-    </div>
+      <div class="img-div">
+        <img src="<?php echo $src;?>" alt="<?php echo $user;?>" class="img profile">
+      </div>
+      <div class="table-div">
     <table class="infoTable table">
         <tr>
             <th>Student Name</th>
@@ -66,6 +73,8 @@ include("auth.php"); //include auth.php file on all secure pages ?>
             <td><?php echo $row["address"];?></td>
         </tr>
     </table>
+    </div>
+    </div>
 </div>
     <?php }?>
 </body>

@@ -4,6 +4,7 @@ include("auth.php"); //include auth.php file on all secure pages ?>
 <html>
 <head>
 <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="css/completeProfile.css">
 <meta charset="utf-8">
 <title>Complete Profile Details</title>
 <link rel="stylesheet" href="css/style.css" />
@@ -17,6 +18,11 @@ include("auth.php"); //include auth.php file on all secure pages ?>
     $result = mysqli_query($con,$selectQ) or die(mysqli_error($con));
     while($row = mysqli_fetch_assoc($result)) {
       //echo "id: " . $row["id"]. " - Name: " . $row["username"]. " " . $row["email"]. "<br>";
+      if($row["profile_pic"] != ""){
+        $src = $row["profile_pic"];
+      }else{
+        $src = "uploads/default.png";
+      }
 ?>
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -42,7 +48,15 @@ include("auth.php"); //include auth.php file on all secure pages ?>
        
 <div class="container" style="" class="align-items-center align-self-center">
     <div class="row">
-        <img src="" alt="">
+        <div class="img_div">
+        <img src="<?php echo $src;?>" alt="<?php echo $user;?>" class="img profile">
+        <form action="" method="post" enctype="multipart/form-data" class="img-form">
+          <input type="file" name="fileToUpload" class="btn btn-warning" id="fileToUpload" >
+          <input type="submit" value="Upload Image" class="btn btn-warning" name="usubmit">
+        </form>
+        <?php include("upload.php");?>
+        </div>
+        <div class="table_div">
         <form class = "noneForm" action="" method="post">
     <table class="infoTable table">
         <tr>
@@ -105,6 +119,7 @@ include("auth.php"); //include auth.php file on all secure pages ?>
         </tr>
     </table>
     </form>
+    </div>
     </div>
 </div>
     <?php }

@@ -9,6 +9,7 @@ if(isset($_POST['scmpFname'])){
                 if(isset($_POST["scmp_erp"])){
                     if(isset($_POST["scmp_gender"])){
                         if(isset($_POST["address"])){
+    if(isset($_POST['fileToUpload'])){
     if(isset($_POST['scmp_submit'])){
     //Taking data input from PHP Queries
 
@@ -35,8 +36,11 @@ if(isset($_POST['scmpFname'])){
     </div>
     `;
     echo $status;
-
+    
     }
 }
 }}}}}}
+}
+
 ?>
+

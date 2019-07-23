@@ -1,0 +1,14 @@
+@media (min-width:800px){
+    .img_div{
+        max-width: 40%;
+    }
+    .profile{
+        margin: 0 auto;
+        margin-top:20px;
+        width: 300px;
+        height: 450px;
+    }
+    .img-form input{
+        margin: 5px 0;
+    }
+}
